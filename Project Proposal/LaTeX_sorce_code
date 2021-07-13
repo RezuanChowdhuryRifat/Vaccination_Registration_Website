@@ -1,0 +1,110 @@
+\documentclass[15pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+
+\geometry{ a4paper,left=4cm,right =4cm,top=5cm}
+ 
+\begin{document}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[scale=0.7]{nsu}
+\break\break\break
+{\LARGE N}{\Large ORTH}  {\LARGE S}{\Large OUTH}   {\LARGE U}{\Large NIVERSITY}
+ \break
+  {\large D}EPARTMENT OF {\large E}LECTRICAL AND {\large C}OMPUTER {\large E}NGINEERING
+ \break\break
+ {\Large P}{\large ROJECT} {\Large P}{\large ROPOSAL}
+ \break\break
+
+\begin{tcolorbox}[colback=white!5!white,colframe=black!75!black]
+\centering
+  {\huge V}{\LARGE ACCINATION}\hspace{.2cm} {\huge R}{\LARGE EGISTRATION} \break{\huge W}{\LARGE EBSITE}
+\end{tcolorbox}
+
+
+
+
+\begin{introduction}
+\centering
+{\large D}ATABASE {\large S}YSTEM {\large L}AB \break
+{\large CSE311L} \break
+{\large S}ECTION: {\large 5} \break
+{\large S}EMESTER: {\large S}UMMER {\large 2021} \break
+\break\break\break
+{\large Course Faculty }\hspace{6cm} {\large Lab Instructor} \break
+{\large Nadeem Ahmed}\hspace{5cm} {\large Nazmul Alam Dipto} \break
+{\large Senior Lecturer}\hspace{8.6cm} \break
+\break\break
+
+
+{\large Student Name and ID} \break
+{\large Rezuan Chowdhury Rifat } \break
+{\large 1931372642} \break
+
+
+
+
+
+{\large Submission Date : July 13, 2021}
+\end{introduction}
+\break\break\break\break
+
+\end{figure}
+
+\newpage
+
+
+
+\section*{Introduction}
+The COVID-19 pandemic has caused a significant loss of human life over the world and poses an enormous public health threat. As a developing country, Bangladesh is at a higher risk. Recently, the Bangladesh government started mass vaccination. In this process, we have to do registration on a website which is "surokkha(.)govt(.)bd". However, this website is not as effective as it should be. The website is not verifying every information properly such as every type of student can complete the registration by filling in wrong information etc. Our website will check all information provided by the user are correct or not. Also, the user can set the vaccination venue at their convenience. 
+
+\section*{Objective}
+\begin{itemize}
+  \item To easily register for vaccination from home.
+  \item Get to know about the process of registration and vaccination venues. 
+  \item To print vaccination card easily.
+  \item To know about the steps after registration.
+  
+\end{itemize}
+
+\section*{Target Users}
+People of Bangladesh, who want to get vaccinated. They will register from this website and will get a unique vaccination card that they can download and print. \\
+ On the other hand, government and other organizations will use it to save the huge hassle of registration on spot and reduce the risk of the spread of Covid-19.They will also know how many people registered for vaccination.   
+
+\section*{Value Proposition}
+This website will save them the time and trouble of going for a spot registration process. It will also save money by eliminating the need for a vast number of volunteers to hold a spot registration. It will also reduce the risk of getting affected by Covid-19. As it is an automated process no one needs to monitor it.
+
+\newpage
+
+\section*{Web Application Feature and description}
+The web page will open with the user view. It will be the general view and anyone accessing the domain will be able to view it. This view will show step by step process of registration. Users can follow those steps do the registration for vaccination. Once they complete registration, they can:
+
+\begin{itemize}
+   \item Print Vaccination Card
+   \item  The number of the registered user will increase on the website
+   \item Users can see their status
+\end{itemize}
+Also, users can see various instructions about Covid-19, the vaccination process as well as vaccination locations. 
+
+\section*{Tools and Resources}
+\raggedright
+HTML \break
+CSS \break
+BOOTSTRAP \break
+Javascript \break
+MySQL \break
+Django \break
+Web server \break
+API for email \break
+    
+\section*{Challenge}
+The biggest challenge is data collection and cost. We need data on the NID of the people of Bangladesh. It is impossible for us to get without the help of the government. As there will be a huge data, we need a huge database which will increase the cost. We will need to check if the data entered are reliable or not. The user interface needs to be simple so that ordinary people can utilize it. Finally, establishing strict security on the website will be hard.
+
+
+\end{document}

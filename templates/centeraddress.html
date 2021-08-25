@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<section class="p-5">
+  <div class="container border address-card">
+      <span style="text-align: center; font-size: 30px;">Center Address</span>
+
+
+    {% for x in "012345" %}
+      
+     
+    <table class="table table-success table-striped">
+        <tr>
+            <td> Center name:</td>
+            <td>Kuwait Bangladesh Friendship Hospital(Uttara) </td>
+        </tr>
+        <tr>
+            <td>Street address:</td>
+             <td>319 Isakha Ave</td>
+        </tr>
+        <tr>
+            <td>Upazila/City Corporation:</td>
+            <td>Dhaka North</td>
+        </tr>
+        <tr>
+            <td>Ward no:</td>
+            <td>01</td>
+        </tr>
+        <tr>
+            <td>District:</td>
+            <td>Dhaka</td>
+        </tr>
+      </table>
+  {% endfor %}
+
+
+  </div>
+
+</section>
+
+
+
+
+{% endblock content %}

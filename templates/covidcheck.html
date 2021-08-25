@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container col-lg-5" >
+ <h4 class="container p-3" style="background-color: lightskyblue; margin-top: 100px;">Are you Covid positive?</h4>
+<select class="form-select " aria-label="Default select example"  id="checkcovid">
+  <option selected>Select one</option>
+  <option value="1">Yes</option>
+  <option value="2">No</option>
+</select>
+<button type="button" class="btn" onclick="covidcheck()" style="margin: 50px; background-color: lightskyblue;">Submit</button>
+</div>
+
+{% endblock content %}

@@ -4,6 +4,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -12,21 +13,7 @@
    
     <title> {% block title%} {% endblock%} </title>
 
-    <style type="text/css">
-      body{
-        background-color: #FFFFCC;
-      }
-      .container-fluid{
-        background-color: #81A140;
-      } 
-
-      .link-style:hover{
-        text-decoration: underline;
-
-      }
-      .btn-outline-dark:hover{
-        background-color: #4D6226 !important;
-      }
+      <style>
       .card-2, .card-3,.card-1{
         display:block;width:18rem;text-decoration: none;color: black;border:1px solid silver; box-shadow: white 5px; 
         height: 100px;font-size: 20px;text-align: center;padding: 10px;margin: 5px; border-radius: 3%;font-weight: 600;background-color: white;
@@ -39,44 +26,81 @@
         color: black;
         background-color:#aec6cf;
       }
-
-    </style>
-  <body>
-
-    <div class="container-fluid container-fluid-success">
-      <header>
-        <div class="row">
-          <div class="col-lg-5">
-            <h1 class="text-center py-2">Vaccination Registration</h1>
-          </div>
-          <div class="col-lg-7">
-            <ul class="nav justify-content-center py-3">
-              <div class="d-grid gap-2">
-              <button class="btn btn-outline-dark mb-2">
-              <li class="nav-item"><a class="text-dark nav-link link-style" href="#">Home</a></li>
-              </button>
-              <button class="btn btn-outline-dark mb-2">
-              <li class="nav-item"><a class="text-dark nav-link link-style" href="#">Registration</a></li>
-              </button>
-              <button class="btn btn-outline-dark mb-2">
-              <li class="nav-item"><a class="text-dark nav-link link-style" href="#">Vaccination Card</a></li>
-              </button>
-              <button class="btn btn-outline-dark mb-2">
-              <li class="nav-item"><a class="text-dark nav-link link-style" href="#">Center Address</a></li>
-              </button>
-              <button class="btn btn-outline-dark mb-2">
-              <li class="nav-item"><a class="text-dark nav-link link-style" href="#">FAQ</a></li>
-              </button>
-              </div>
-            </ul>
-          </div>
-        </div>
-      </header>
-    </div>
-
- {% block content %}
   
-  {% endblock content %}
+      .content{
+        min-height: 380px;
+      }
+      .nav{
+          background-color: #645394;
+      }
+      .nav-div{
+      
+          position: sticky;
+          top: 0;
+      }
+      .nav-item{
+        font-size: 17px;
+        padding-right: 10px;
+      }
+      .foot{
+        background-color: #645394;
+        position:relative;
+       bottom: 0;
+       right: 0;
+       left: 0;
+       width: 100%;
+   
+      }
+      
+    </style>
+</head>
+<body class="">
+
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark  p-3 nav">
+    <div class="container-fluid nav-div">
+      <a class="navbar-brand" href="/">Vaccination Program Bangladesh</a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse " id="navbarColor02">
+        <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+  
+
+            <li class="nav-item">
+            <a class="nav-link" href="/covidcheck">Registration</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/vaccinecard">Vaccine Card</a>
+          </li>
+
+          
+          <li class="nav-item">
+              <a class="nav-link" href="/centeraddress">Center Address</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/faq">FAQ</a>
+          </li>
+
+        </ul>
+      
+      </div>
+    </div>
+  </nav>
+
+  <noscript>
+  <h4 class="bg-danger" style="text-align:center"> Please trun on JavaScript to use this website properly</h4>
+  </noscript>
+    
+  <div class="content">
+     {% block content %}
+  
+     {% endblock content %}
+  </div>
 
 
 <!--FOOTER-->

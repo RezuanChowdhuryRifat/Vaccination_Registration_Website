@@ -6,7 +6,7 @@ app_name = 'vaccination_app'
 
 urlpatterns = [
 
-    path('home/', views.HomePageView, name='HomePageView'),
+    path('', views.HomePageView, name='HomePageView'),
     path('covidcheck/', views.CovidCheckView, name='CovidCheckView'),
     path('faq/', views.FaqView, name='FaqView'),
 

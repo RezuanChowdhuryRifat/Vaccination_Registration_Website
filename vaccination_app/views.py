@@ -27,7 +27,7 @@ class AddressView(ListView):
 
 
 class VaccinecardView(FormView):
-    template_name = "vaccinationcard.html"
+    template_name = "vaccinecard.html"
     form_class = PostForm
 
 

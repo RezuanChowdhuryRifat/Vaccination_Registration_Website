@@ -10,10 +10,18 @@ from django.views.generic import TemplateView, ListView, FormView
 from .registrationform import PostForm
 from .vaccinecardform import PostForm
 from .models import Address, Nid, Center, CenterAddress, Student, GovernmentEmployee, Citizen, MedicalPersonel, Registration, Volunteering
+from django.http import HttpResponse
 
 
 
+def HomePageView(request):
+    return render(request, 'home.html')
 
+def CovidCheckView(request):
+    return render(request, 'covidcheck.html')
+
+def FaqView(request):
+    return render(request, 'faq.html')
 
 
 

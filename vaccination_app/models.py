@@ -3,7 +3,7 @@ from django.db import models
 
 class Address(models.Model):
     id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    house_no = models.IntegerField(db_column='House_No')  # Field name made lowercase.
+    street_address = models.CharField(db_column='Street_Address', max_length=300)  # Field name made lowercase.
     upazilla_city_corporation = models.CharField(db_column='Upazilla_City_Corporation', max_length=50)  # Field name made lowercase.
     ward_no = models.IntegerField(db_column='Ward_No')  # Field name made lowercase.
     district = models.CharField(db_column='District', max_length=50)  # Field name made lowercase.
@@ -12,8 +12,6 @@ class Address(models.Model):
     class Meta:
         managed = False
         db_table = 'address'
-
-
 
 
 class Center(models.Model):
@@ -28,7 +26,7 @@ class Center(models.Model):
 
 class CenterAddress(models.Model):
     id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    house_no = models.IntegerField(db_column='House_No')  # Field name made lowercase.
+    street_address = models.CharField(db_column='Street_Address', max_length=300)  # Field name made lowercase.
     upazilla_city_corporation = models.CharField(db_column='Upazilla_City_Corporation', max_length=50)  # Field name made lowercase.
     ward_no = models.IntegerField(db_column='Ward_No')  # Field name made lowercase.
     district = models.CharField(db_column='District', max_length=50)  # Field name made lowercase.
@@ -47,7 +45,6 @@ class Citizen(models.Model):
     class Meta:
         managed = False
         db_table = 'citizen'
-
 
 
 class GovernmentEmployee(models.Model):
@@ -70,7 +67,7 @@ class MedicalPersonel(models.Model):
 
 
 class Nid(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True)
     fname = models.CharField(db_column='FName', max_length=100, blank=True, null=True)  # Field name made lowercase.
     lname = models.CharField(db_column='LName', max_length=100, blank=True, null=True)  # Field name made lowercase.
     dob = models.DateField()

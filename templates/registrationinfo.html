@@ -1,7 +1,43 @@
-{% extends "index.html" %}
+
+{% extends "index.html"%}
+
+{%load crispy_forms_tags %} 
 
 {% block content%}
 
+<div class="container p-5" style="font-size: 17px; margin-bottom: 0;" >
+   Complete the registration by verifying your national identity card and mobile number in the form below.
+    The place and date of delivery of the vaccine will be informed in due course through SMS message on the mobile phone.
+</div>
+
+ <form method="POST" action="" enctype="multipart/form-data" style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px; margin-top: 0;">
+      
+   {% csrf_token %}
+<div class="contaoner" style="padding-right: 100px; padding-top: 0px; padding-bottom: 100px; padding-left: 120px;">
+   <div class="form-row">
+        <div class="form-group col-md-6 mb-0">
+           {{ form.Phone_number|as_crispy_field }}
+        </div>
+        <div class="form-group col-lg-2 col-md-6 mb-0">
+             {{ form.Center|as_crispy_field }}
+        </div>
+         <button type="submit" class="btn" onclick="javascript:showOTP()" style="margin-top: 50px; background-color: #645394; color: white;">Get OTP</button> 
+   </div>
+
+<div id="otp" style="display: none; margin-top: 20px;";>
+   <div class=" col-lg-3">  
+ 
+      {{ form.OTP|as_crispy_field }}
+   </div>
+    
+ 
+         <button type="submit" class="btn" style="margin-top: 50px; background-color: #645394; color: white;">Verify</button>
+ </div>
+
+</div>       
+
+   
 
 
-{% endblock %}
+
+{% endblock%}

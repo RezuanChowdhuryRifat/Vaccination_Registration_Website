@@ -9,3 +9,8 @@ function covidcheck(){
      
    }
  }
+
+ function showOTP(){
+   let getId = document.getElementById('otp')
+   getId.style.display ="block"
+ }

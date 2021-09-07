@@ -1,6 +1,6 @@
 create table Address(
     ID int primary key,
-    House_No int not null,
+    Street_Address varchar(300) not null,
     Upazilla_City_Corporation varchar(50) not null,
     Ward_No int not null,
     District varchar(50) not null,
@@ -75,7 +75,7 @@ create table citizen(
 
 create table Center_Address(
     ID int primary key,
-    House_No int not null,
+    Street_Address varchar(300) not null,
     Upazilla_City_Corporation varchar(50) not null,
     Ward_No int not null,
     District varchar(50) not null,

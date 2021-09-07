@@ -9,7 +9,7 @@ create table Address(
 );
 
 create table NID(
-    id int(10) primary key,
+    id bigint(10) primary key,
     FName varchar(100),
     LName varchar(100),
     dob DATE not null,
@@ -23,7 +23,7 @@ create table NID(
 );
 
 create table Student(
-    NID_ID int(10) primary key,
+    NID_ID bigint(10) primary key,
     University_Name varchar(200) not null,
     CONSTRAINT Student_fk foreign key(NID_ID) references NID(ID)
     on update CASCADE
@@ -32,7 +32,7 @@ create table Student(
 );
 
 create table Medical_Personel(
-    NID_ID int(10) primary key,
+    NID_ID bigint(10) primary key,
     Medical_Institution_Name varchar(200) not null,
     CONSTRAINT MP_fk foreign key(NID_ID) references NID(ID)
     on update CASCADE
@@ -41,7 +41,7 @@ create table Medical_Personel(
 );
 
 create table Government_Employee(
-    NID_ID int(10) primary key,
+    NID_ID bigint(10) primary key,
     Department varchar(150) not null,
     Job_Title varchar(100) not null,
     CONSTRAINT GE_fk foreign key(NID_ID) references NID(ID)
@@ -53,7 +53,7 @@ create table Government_Employee(
 
 
 create table Volunteering(
-    NID_ID int(10) primary key,
+    NID_ID bigint(10) primary key,
     Organization varchar(150) not null,
     Job_Title varchar(100) not null,
     CONSTRAINT V_fk foreign key(NID_ID) references NID(ID)    
@@ -63,7 +63,7 @@ create table Volunteering(
 );
 
 create table citizen(
-    NID_ID int(10) primary key,
+    NID_ID bigint(10) primary key,
     Occupation varchar(200) not null,
     Job_Title varchar(100),
     CONSTRAINT Citizen_fk foreign key(NID_ID) references NID(ID)
@@ -94,7 +94,7 @@ create table Center(
     );
 
 create table registration(
-    NID int(10) primary key,
+    NID bigint(10) primary key,
     Date Timestamp not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     Center_ID int(9),
     Mobile_No int,

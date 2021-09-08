@@ -8,29 +8,29 @@
       <span style="text-align: center; font-size: 30px;">Center Address</span>
 
 
-    {% for x in "012345" %}
+    {% for x  in centers %}
       
      
     <table class="table table-success table-striped">
         <tr>
-            <td> Center name:</td>
-            <td>Kuwait Bangladesh Friendship Hospital(Uttara) </td>
+            <td> Center id:</td>
+             <td>{{x.id}} </td> 
         </tr>
         <tr>
             <td>Street address:</td>
-             <td>319 Isakha Ave</td>
+             <td>{{x.street_address}}</td>
         </tr>
         <tr>
             <td>Upazila/City Corporation:</td>
-            <td>Dhaka North</td>
+            <td>{{x.upazilla_city_corporation}}</td>
         </tr>
         <tr>
             <td>Ward no:</td>
-            <td>01</td>
+            <td>{{x.ward_no}}</td>
         </tr>
         <tr>
             <td>District:</td>
-            <td>Dhaka</td>
+            <td>{{x.district}}</td>
         </tr>
       </table>
   {% endfor %}

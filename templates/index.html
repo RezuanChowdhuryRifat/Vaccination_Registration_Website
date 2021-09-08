@@ -96,6 +96,15 @@
   <h4 class="bg-danger" style="text-align:center"> Please trun on JavaScript to use this website properly</h4>
 
   </noscript>
+ {% if messages %} 
+      <div class="bg-success bd-gradient text-center text-white py-4">
+      <ul class="messages">
+          {% for message in messages %}
+          <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+          {% endfor %}
+      </ul>
+    </div>
+ {% endif %}
 
 <div style="min-height: 750px;">
 	 {% block content %}

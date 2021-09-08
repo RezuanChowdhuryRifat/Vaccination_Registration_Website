@@ -50,13 +50,17 @@ class VaccinecardView(FormView):
         search_term=form.cleaned_data['NID']
         search_term2=form.cleaned_data['Date_of_Birth']
         valid = Nid.objects.filter(id=search_term)
-        for objects in valid:
-            if valid and objects.dob == search_term2:
+        valid2 = Registration.objects.filter(nid=search_term)
+        if valid2:
+          for objects in valid:
+            if objects.dob == search_term2:
                 return super().form_valid(form)
             else:
+              form.add_error('Date_of_Birth', 'Your date of birth is incorrect')
+              return self.form_invalid(form)
+        else:
               form.add_error('NID', 'You are not registered')
               return self.form_invalid(form)
-
 
 class RegistrationView(FormView):
     template_name = "registration.html"

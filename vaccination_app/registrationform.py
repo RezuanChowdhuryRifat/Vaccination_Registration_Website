@@ -11,9 +11,9 @@ choice =(
 )
 class PostForm(forms.Form):
    
-   NID  = forms.IntegerField()
+   NID  = forms.CharField()
    Date_of_Birth = forms.DateField(widget=forms.SelectDateWidget(years=range(1921,2004)))
-   Phone_number  = forms.IntegerField()
+   Phone_number  = forms.CharField()
    Center = forms.ChoiceField(choices=choice)
    CAPTCHA = forms.CharField()
  

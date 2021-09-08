@@ -63,23 +63,42 @@ class RegistrationView(FormView):
     form_class = PostForm
     success_url='/otp'
    
+   
 
     def form_valid(self, form):
         search_term=form.cleaned_data['NID']
         search_term2=form.cleaned_data['Date_of_Birth']
         search_term3=form.cleaned_data['Phone_number']
         search_term4=form.cleaned_data['Center']
+        today = date.today()
+        user_age=  today.year-search_term2.year
         valid = Nid.objects.filter(id=search_term)
-    
+        valid2 = Registration.objects.filter(nid= search_term)
+        valid3 =Registration.objects.filter(mobile_no=search_term3)
+        if valid2:
+            form.add_error('NID', 'You are already registered')
+            return self.form_invalid(form)
 
-        print(search_term)
-        for objects in valid:
-            if valid and objects.dob == search_term2:
-               
-                return super().form_valid(form)
+        else:
+            if valid3:
+             form.add_error('Phone_number', 'This mobile number already registered')
+             return self.form_invalid(form)
             else:
-              form.add_error('NID', 'You are not eligible')
-              return self.form_invalid(form)
+              for objects in valid:
+                if valid and objects.dob == search_term2:
+                 nid_obj = Nid.objects.get(id=form.cleaned_data['NID'])
+                 center_obj = Center.objects.get(center_id=form.cleaned_data['Center'])
+                 new_object = Registration.objects.create(
+                  nid=nid_obj,
+                  date = date.today(),
+                  center=center_obj,
+                  mobile_no=form.cleaned_data['Phone_number'],
+                  age = user_age
+             ) 
+                 return super().form_valid(form)
+                else:
+                 form.add_error('NID', 'You are not eligible')
+                 return self.form_invalid(form)
 
    
 

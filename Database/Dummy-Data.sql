@@ -44,3 +44,19 @@ VALUES(1889910484, 'United Hospital Limited');
 
 INSERT INTO volunteering(NID_ID, Organization, Job_Title)
 VALUES();
+
+
+SHOW PROCESSLIST;
+SET GLOBAL event_scheduler = ON;
+
+DELIMITER $$
+
+CREATE 
+	EVENT `clear_dailyOTP` 
+	ON SCHEDULE EVERY 1 DAY STARTS '2021-09-09 12:00:00' 
+	DO BEGIN
+		DELETE FROM otp;
+	    
+	END $$
+
+DELIMITER ;

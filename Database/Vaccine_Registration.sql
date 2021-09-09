@@ -108,3 +108,7 @@ create table registration(
     unique(Mobile_No, Center_ID),
     index(NID, Center_ID, Mobile_No)    
 );
+
+create table otp(
+    otpkey int 
+);

@@ -80,11 +80,19 @@ class Nid(models.Model):
         db_table = 'nid'
 
 
+class Otp(models.Model):
+    otpkey = models.IntegerField(blank=True, null=True)     
+
+    class Meta:
+        managed = False
+        db_table = 'otp'
+
+
 class Registration(models.Model):
     nid = models.OneToOneField(Nid, models.DO_NOTHING, db_column='NID', primary_key=True)  # Field name made lowercase.
     date = models.DateTimeField(db_column='Date')  # Field name made lowercase.
     center = models.ForeignKey(Center, models.DO_NOTHING, db_column='Center_ID', blank=True, null=True)  # Field name made lowercase.
-    mobile_no = models.IntegerField(db_column='Mobile_No', blank=True, null=True)  # Field name made lowercase.
+    mobile_no = models.BigIntegerField(db_column='Mobile_no', blank=True, null=True)  # Field name made lowercase.
     age = models.IntegerField(db_column='Age')  # Field name made lowercase.
 
     class Meta:

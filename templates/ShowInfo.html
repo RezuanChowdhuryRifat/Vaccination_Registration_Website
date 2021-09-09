@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Show Info</title>
+</head>
+<body>
+    <h1 class="header" style="text-align: center">Show Info</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">NID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">DOB</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Center ID</th>
+                            <th scope="col">Center Name</th>
+                            <th scope="col">Center Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                            {% for %}
+                        <tr>
+                            <td># ID No.</td>
+                            <td># F.Name</td>
+                            <td># L.Name</td>
+                            <td># DOB</td>
+                            <td># Address</td>
+                            <td># Date of Registration</td>
+                            <td># Center ID</td>
+                            <td># Center Name</td>
+                            <td># Center Address</td>
+                        </tr>
+                            {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="btn" style="display: flex; justify-content: center; align-items: center;">
+        <a class="btn btn-primary m-2" href="{% url 'VaccineCard-pdf' %}">Create PDF</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -25,8 +25,8 @@ from .Twilio import sendsms
 from .OTPGenerator import gen_key,generate_code,verify_code
 
 
-account_sid =os.environ.get("account_sid")
-auth_token =os.environ.get("auth_token")
+account_sid =os.environ['account_sid']
+auth_token =os.environ['auth_token']
 
 
 def HomePageView(request):
@@ -105,6 +105,7 @@ class RegistrationView(FormView):
                 if valid4 and objects.dob == search_term2:
                  nid_obj = Nid.objects.get(id=form.cleaned_data['NID'])
                  center_obj = Center.objects.get(center_id=form.cleaned_data['Center'])
+                 human = True
                  new_object = Registration.objects.create(
                   nid=nid_obj,
                   date = date.today(),
@@ -120,7 +121,7 @@ class RegistrationView(FormView):
                  msg_body =f'''
                  Covid-19 vaccine registration: Your OTP code:{code}
                  '''
-                 sendsms(account_sid,auth_token,msg_body,'+12532011591',search_term3)
+                 sendsms(account_sid,auth_token,msg_body,'+19287560208',search_term3)
                  return super().form_valid(form)
                 else:
                  form.add_error('NID', 'You are not eligible')
@@ -137,7 +138,8 @@ class OtpView(FormView):
        search_term5 = form.cleaned_data['OTP'] 
        search_term6 = Otp.objects.filter(otpkey=search_term5).exists()
        print(search_term6)
-       if search_term6:       
+       if search_term6:    
+            human = True   
             messages.add_message(self.request, messages.SUCCESS, "You successfully registered")   
             return super().form_valid(form)
        else:

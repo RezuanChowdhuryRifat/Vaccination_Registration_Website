@@ -1,15 +1,10 @@
-import os
-#install twilio package:
-from twilio.rest import Client
 
-# Find these values at https://twilio.com/user/account
-# To set up environmental variables, see http://twil.io/secure
-account_sid = os.environ['TWILIO_ACCOUNT_SID']
-auth_token = os.environ['TWILIO_AUTH_TOKEN']
+def sendsms(account_sid, auth_token, body,from_,to_ ):
+    from twilio.rest import Client
+    client = Client(account_sid, auth_token)
 
-client = Client(account_sid, auth_token)
-
-client.api.account.messages.create(
-    to="+12316851234", # your number
-    from_="+18722405726", # My Twilio Account Number
-    body="Hello there!")
+    client.api.account.messages.create(
+    to=to_, # your number
+    from_=from_, # My Twilio Account Number
+    body=body
+    )

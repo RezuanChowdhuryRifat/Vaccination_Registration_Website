@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vaccination_app',
+     'twilio',
     'crispy_forms',
     'captcha',
 ]
@@ -86,6 +87,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vaccination_registration',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': 'Re t u r n s'
+    },
+     'otp': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'vaccination_otp',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',

@@ -1,4 +1,4 @@
-
+import os
 from django.contrib import messages
 from django import forms
 from django.db.models.base import Model
@@ -25,8 +25,8 @@ from .Twilio import sendsms
 from .OTPGenerator import gen_key,generate_code,verify_code
 
 
-account_sid = 'AC107cfb0194128962c0ba69798d1a369a'
-auth_token = 'd57dc630ce498dffa73086e3ba824de3'
+account_sid =os.environ.get("account_sid")
+auth_token =os.environ.get("auth_token")
 
 
 def HomePageView(request):

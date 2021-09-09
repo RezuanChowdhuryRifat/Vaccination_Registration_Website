@@ -46,6 +46,10 @@ INSTALLED_APPS = [
      'twilio',
     'crispy_forms',
     'captcha',
+    # Application definition for PDF_CONVERT:
+    'pdf_convert.apps.PdfConvertConfig',
+    # Loading xhtml2pdf app: [pip install xhtml2pdf]
+    'xhtml2pdf'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

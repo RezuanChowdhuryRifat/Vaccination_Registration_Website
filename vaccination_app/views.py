@@ -46,16 +46,17 @@ def FaqView(request):
 
 class AddressView(ListView):
     http_method_names = ["get"]
-    model = CenterAddress
-    template_name = "centerAddress.html"
+    model = Center
+    template_name = "centeraddress.html"
     context_object_name = "centers"
-    queryset = CenterAddress.objects.all().order_by('id')
+    queryset = Center.objects.all().order_by('center_address')
     
     
     
 def VaccinecardView(request):
 
     form_class = PostForm2
+    # if request is not post, initialize an empty form
     form = form_class(request.POST or None)
     if request.method == 'POST':
       

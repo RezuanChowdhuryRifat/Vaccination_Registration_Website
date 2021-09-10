@@ -7,31 +7,34 @@
   <div class="container border address-card">
       <span style="text-align: center; font-size: 30px;">Center Address</span>
 
-
     {% for x  in centers %}
       
      
     <table class="table table-success table-striped">
         <tr>
-            <td> Center id:</td>
-             <td>{{x.id}} </td> 
+            <td> Center name:</td>
+             <td>{{x.center_name}} </td> 
         </tr>
         <tr>
-            <td>Street address:</td>
-             <td>{{x.street_address}}</td>
+            <td> Center id:</td>
+             <td>{{x.center_address.id}} </td> 
+        </tr>
+        <tr>
+            <td> Street address:</td>
+             <td>{{x.center_address.street_address}} </td> 
         </tr>
         <tr>
             <td>Upazila/City Corporation:</td>
-            <td>{{x.upazilla_city_corporation}}</td>
+            <td>{{x.center_address.upazilla_city_corporation}}</td>
         </tr>
         <tr>
             <td>Ward no:</td>
-            <td>{{x.ward_no}}</td>
+            <td>{{x.center_address.ward_no}}</td>
         </tr>
         <tr>
             <td>District:</td>
-            <td>{{x.district}}</td>
-        </tr>
+            <td>{{x.center_address.district}}</td>
+        </tr> 
       </table>
   {% endfor %}
 

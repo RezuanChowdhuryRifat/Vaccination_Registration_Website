@@ -1,0 +1,58 @@
+
+    <div class="container p-5" style="font-size: 14px;">
+        <div class="row " >
+            <div class="col-md-8">
+          
+                  <table class="table">
+  <thead>
+    <tr>
+        <th scope="col">Covid-19 vaccination card</th>
+      </tr>
+  </thead>
+  <thead>
+    <tr>
+        <th scope="col"></th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td>NID: {{nid.id}} </td>
+      <td>Date: {{registration.date}}</td>
+    </tr>
+    <tr> 
+      <td>Name: {{nid.fname}} {{nid.lname}} </td>
+    </tr>
+     <tr> 
+      <td>Date of birth: {{nid.dob}} </td>
+      <td>Age: {{registration.age}}</td>
+    </tr>
+     <tr> 
+      <td>Father's name: {{nid.fathers_name}}</td>
+      <td>Mother's name: {{nid.mothers_name}}</td>
+    </tr>
+    <tr> 
+        <td>Street address: {{address.street_address}} </td>
+        <td>Upazilla/City Corporation: {{address.upazilla_city_corporation}}</td>
+      </tr>
+      <tr> 
+        <td>Ward no: {{address.ward_no}}</td>
+        <td>District: {{address.district}} </td>
+      </tr>
+     <tr> 
+        <td>Center name: {{center.center_name}}</td>
+      <td>Center ID: {{center_id.id}}</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+    <div style="margin-top: 30px; font-size: 14px;">
+        <strong>Instructions:</strong> <br>
+        1) Bring this Vaccine card during vaccination <br>
+        2) You will receive a message the day before your date of vaccination
+    </div>
+            </div>
+        </div>
+    </div>

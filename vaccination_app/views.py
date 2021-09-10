@@ -2,14 +2,14 @@ import os
 from django.contrib import messages
 from django import forms
 from django.db.models.base import Model
-from django.db.models.fields import BigIntegerField
 from django.db.models.query import QuerySet
-from django.forms.fields import JSONField, JSONString
+from django.conf import settings
 from django.forms.forms import Form
 from typing import List
 from django.contrib import messages
 from django.contrib.auth import settings
 from django.shortcuts import redirect, render
+from django.urls.base import reverse
 from django.utils.translation import templatize
 from django.views.generic import TemplateView, ListView, FormView
 from .registrationform import PostForm
@@ -23,7 +23,10 @@ from django.db import connection
 from datetime import date, datetime
 from .Twilio import sendsms
 from .OTPGenerator import gen_key,generate_code,verify_code
-
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from importlib import import_module
+from django.contrib.sessions.backends.db import SessionStore
 
 account_sid =os.environ['account_sid']
 auth_token =os.environ['auth_token']
@@ -50,28 +53,61 @@ class AddressView(ListView):
     
     
     
+def VaccinecardView(request):
 
-
-class VaccinecardView(FormView):
-    template_name = "vaccinecard.html"
     form_class = PostForm2
-    success_url='/otp'
+    form = form_class(request.POST or None)
+    if request.method == 'POST':
+      
+        if form.is_valid():
+            search_term=form.cleaned_data['NID']
+            search_term2=form.cleaned_data['Date_of_Birth']
+            valid = Nid.objects.filter(id=search_term)
+            valid2 = Registration.objects.filter(nid=search_term).exists()
+            if valid2:
+             for objects in valid:
+              if objects.dob == search_term2:
+                human = True
 
-    def form_valid(self, form):
-        search_term=form.cleaned_data['NID']
-        search_term2=form.cleaned_data['Date_of_Birth']
-        valid = Nid.objects.filter(id=search_term)
-        valid2 = Registration.objects.filter(nid=search_term).exists()
-        if valid2:
-          for objects in valid:
-            if objects.dob == search_term2:
-                 return super().form_valid(form)
+                request.session['NID'] = search_term
+                return redirect('/showInfo')
+
             else:
               form.add_error('Date_of_Birth', 'Your date of birth is incorrect')
-              return self.form_invalid(form)
         else:
               form.add_error('NID', 'You are not registered')
-              return self.form_invalid(form)
+              form = PostForm2()  
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'vaccinecard.html', context)
+
+# class VaccinecardView(FormView):
+#     template_name = "vaccinecard.html"
+#     form_class = PostForm2
+#     success_url = 'showInfo/'
+
+#     def form_valid(self, form):
+#         search_term=form.cleaned_data['NID']
+#         search_term2=form.cleaned_data['Date_of_Birth']
+#         valid = Nid.objects.filter(id=search_term)
+#         valid2 = Registration.objects.filter(nid=search_term).exists()
+#         if valid2:
+#           for objects in valid:
+#             if objects.dob == search_term2:
+#                 human = True
+
+#                 request.session['NID'] = 'search_term'
+
+#                 return super().form_valid(form)
+#             else:
+#               form.add_error('Date_of_Birth', 'Your date of birth is incorrect')
+#               return self.form_invalid(form)
+#         else:
+#               form.add_error('NID', 'You are not registered')
+#               return self.form_invalid(form)
 
 class RegistrationView(FormView):
     template_name = "registration.html"
@@ -145,3 +181,56 @@ class OtpView(FormView):
        else:
             form.add_error('OTP', 'Wrong OTP')
             return self.form_invalid(form)  
+
+def show_info(request):
+    id = request.session['NID']
+
+
+    registration = Registration.objects.get(nid=id)
+    center_id = Registration.objects.get(nid=id).center
+    
+    nid = Nid.objects.get(id=id)
+
+    address_id = Nid.objects.get(id=id).address
+    center = Center.objects.get(center_id = center_id.center_id)
+   
+    address = Address.objects.get(id=address_id.id)
+    center_address= Center.objects.get(center_id = center_id.center_id).center_address
+
+
+
+    return render(request, 'ShowInfo.html',  {'nid': nid, 'registration':registration,'address':address,'center':center,'center_id':center_address})
+
+
+def renderpdfview(request):
+
+    id = request.session['NID']
+    del request.session['NID']
+
+
+    registration = Registration.objects.get(nid=id)
+    center_id = Registration.objects.get(nid=id).center
+    
+    nid = Nid.objects.get(id=id)
+
+    address_id = Nid.objects.get(id=id).address
+    center = Center.objects.get(center_id = center_id.center_id)
+   
+    address = Address.objects.get(id=address_id.id)
+    center_address= Center.objects.get(center_id = center_id.center_id).center_address
+    template_path = 'renderpdf.html' # template_path = 'user_printer.html'
+
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="VaccineCard.pdf"' # Attachment enables it to be downloadable
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render({'nid': nid, 'registration':registration,'address':address,'center':center,'center_id':center_address})
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response) # dest=response; destination is response
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

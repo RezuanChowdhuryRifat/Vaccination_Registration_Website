@@ -1,13 +1,17 @@
 {% extends "index.html" %}
+
 {% block content %}
 <div class="container col-lg-5 bg-warning" id="message" style="margin-bottom: 10px;margin-top: 100px; font-size: 25px; text-align: center;width: 100%;">
 </div>
+
 <div class="container col-lg-5" >
  <h4 class="container p-3 bg-light" style="background-color: silver;">Are you Covid positive?</h4>
 <select class="form-select " aria-label="Default select example"  id="checkcovid">
+
   <option value="1">Yes</option>
   <option value="2">No</option>
 </select>
 <button type="button" class="btn" onclick="covidcheck()" style="margin: 50px; background-color: #645394;color: white;">Submit</button>
 </div>
+
 {% endblock content %}

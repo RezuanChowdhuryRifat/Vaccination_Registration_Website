@@ -1,19 +1,28 @@
 {% extends "index.html" %}
+
+
 {% block content %}
+<section>
+  <!-- <div class="container p-5 bg-danger" id="message" style="color: black; font-size: 20px;"></div> -->
+</section>
+
 <section class="fluid-container p-5" id="home">
 
     <div class="container p-5">
         <div class="row">
-          <div class="col"> 
+          <div class="col">
+            
             <a href="/covidcheck" class="card-title card-1"  style="font-size: 30px; text-align: center;"><i class="bi bi-person-check" style="font-size: 50px;"></i> VACCINE REGISTRATION
                   <p class="card-text" style="font-size: 18px;"><br><br><br>During Vaccination you need</p>
                   <p><i class="bi bi-credit-card-2-front p-2"></i><i class="bi bi-arrow-right p-2"></i><i class="bi bi-phone p-2"></i><i class="bi bi-arrow-right"></i><i class="bi bi-info-circle p-2"></i><br>
                   <span class="p-2" style="font-size: 18px;">NID</span><span class="p-2"style="font-size: 18px;">Mobile</span>
                   <span class="p-2"style="font-size: 18px;">Info</span></p> 
              </a>
+    
           </div>
           <div class="col">
            <div class="row">
+         
               <a href="/vaccinecard" class=" card-2"  style="text-decoration: none;
                     color: black;"><i class="bi bi-card-checklist" style="font-size: 25px;"></i>
               VACCINE CARD
@@ -23,40 +32,51 @@
                 <a href="/faq" class=" card-3" style="text-decoration: none;color: black;"><i class="bi bi-question-circle" style="font-size: 25px;"></i>
                FAQ</a>
                </div>
+            
            </div>
+    
           <div class="col-5">
             <img src="https://www.freevector.com/uploads/vector/preview/31004/vaccine3_Mesa_de_trabajo_1.jpg" class="img-fluid" alt="" style="height: 100%; width: 100%;">
            </div>
         </div>
+
   </div>
 </section>
+
+
 <section>
   <div class="container">
   <div style="font-size: 35px; text-align: center; font-weight: 600;"> The process of receiving the Covid-19 vaccine</div>
     <div class="card-group p-5 bg-light" style="text-align: center;">
       <div class="card">
+     
         <div class="card-body bg-light">
           <i class="bi bi-phone" style="font-size: 50px;"></i>
           <h5 class="card-title">Online Registration</h5>
           <p class="card-text">First, you have to complete the online registration by verifying your national
              identity card and correct mobile number through this portal.</p>
+        
         </div>
       </div>
       <div class="card">
+     
         <div class="card-body bg-light">
           <i class="bi bi-envelope" style="font-size: 50px;"></i>
           <h5 class="card-title">SMS Notification</h5>
           <p class="card-text">After registering online, you will receive a text message on your mobile phone mentioning
              the date of vaccination and the name of the vaccination center.</p>
+      
         </div>
       </div>
       <div class="card">
+  
         <div class="card-body bg-light">
           <i class="bi bi-building" style="font-size: 50px;"></i>
           <h5 class="card-title">Vaccination</h5>
           <p class="card-text">Subject to receiving a text message on the mobile phone, you have to appear in person at the vaccination
              center on the specified date with the vaccine
              card, national identity card and signed consent form to receive the Covid-19 vaccine.</p>
+        
         </div>
       </div>
     </div>

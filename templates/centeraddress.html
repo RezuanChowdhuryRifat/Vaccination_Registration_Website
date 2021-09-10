@@ -1,9 +1,16 @@
 {% extends "index.html" %}
+
 {% block content %}
+
+
 <section class="p-5">
   <div class="container border address-card">
       <span style="text-align: center; font-size: 30px;">Center Address</span>
-    {% for x  in centers %}   
+
+
+    {% for x  in centers %}
+      
+     
     <table class="table table-success table-striped">
         <tr>
             <td> Center id:</td>
@@ -27,6 +34,13 @@
         </tr>
       </table>
   {% endfor %}
+
+
   </div>
+
 </section>
+
+
+
+
 {% endblock content %}

@@ -1,5 +1,7 @@
  {% extends "index.html" %}
+
  {% block content %}
+
  <h1 class="header" style="text-align: center">Vaccine Card</h1>
     <div class="container">
         <div class="row justify-content-center">
@@ -11,7 +13,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>     
+    <tr>
+      
       <td>NID: {{nid.id}} </td>
       <td>DATE: {{registration.date}}</td>
     </tr>
@@ -37,7 +40,8 @@
      <tr> 
         <td>Center name: {{center.center_name}}</td>
       <td>Center ID: {{center_id.id}}</td>
-    </tr>    
+    </tr>
+    
   </tbody>
 </table>
             </div>
@@ -46,4 +50,5 @@
         <a class="btn btn-primary m-2" href="/vaccineCardpdf">Download Vaccine Card</a>
         </div>
     </div>
+ 
  {% endblock content %}

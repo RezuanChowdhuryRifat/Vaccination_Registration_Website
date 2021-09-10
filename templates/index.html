@@ -16,11 +16,15 @@
       }
       .card-1{
         height: auto; width: 22rem;border-radius: 2%;
+  
       }
       .card-2:hover,.card-1:hover,.card-3:hover{
         color: black;
         background-color:#aec6cf;
       }
+
+    
+  
       .content{
         min-height: 380px;
       }
@@ -47,9 +51,11 @@
        font-family: Arial, Helvetica, sans-serif;
        padding: 50px;
       }
+
     </style>
 </head>
 <body class="">
+
   <nav class="navbar sticky-top navbar-expand-lg navbar-dark  p-3 nav">
     <div class="container-fluid nav-div">
       <a class="navbar-brand" href="/" style="font-size: 25px;">Vaccination Program Bangladesh</a>
@@ -61,24 +67,34 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
+  
+
             <li class="nav-item">
             <a class="nav-link" href="/covidcheck">Registration</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/vaccinecard">Vaccine Card</a>
-          </li>         
+          </li>
+
+          
           <li class="nav-item">
               <a class="nav-link" href="/centeraddress">Center Address</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/faq">FAQ</a>
           </li>
+
+
         </ul>
+      
       </div>
     </div>
   </nav>
   <noscript>
   <h4 class="bg-danger" style="text-align:center"> Please turn on JavaScript to use this website properly.</h4>
+
   </noscript>
  {% if messages %} 
       <div class="bg-success bd-gradient text-center text-white py-4">
@@ -89,29 +105,43 @@
       </ul>
     </div>
  {% endif %}
+
 <div style="min-height: 750px;">
 	 {% block content %}
+  
   {% endblock content %}
 </div>
+
   <section class="foot" style="margin-top: 100px;margin-left: 0;">
+    <!-- Footer -->
     <footer class=" footer-fixed-bottom text-white text-center">
+      <!-- Grid container -->
       <div class="page-container p-4">
+        <!--Grid row-->
         <div class="row">
+          <!--Grid column-->
           <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
             <h5 class="">Vaccination Program Bangladesh</h5>
+  
             <p>
               Develped By - Depertment of ICT Bangladesh
             </p>
           </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
             <h5 class="">Contact</h5>
+  
             <ul class="list-unstyled mb-0">
               <li>
                 <a href="https://ictd.gov.bd/" class="text-white" style="text-decoration: none;">ICT department</a>
               </li>
               <li>
+             
                 <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="text-decoration: none; color: white;">Developers</button>
-                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+
+                   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                    <div class="offcanvas-header">
                    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -122,7 +152,8 @@
                 Contact :    <a href="https://www.linkedin.com/in/rezuan-chowdhury-874883191/" style="text-decoration: none; color: blue;">Linkedin</a>
                 <br> 
                  <span style="color: white;"> Contact : </span>   <a href="https://github.com/RezuanChowdhuryRifat" style="text-decoration: none; color: blue;">Github</a>
-                </p>               
+                </p>
+                 
                 </div>
                 <br>
                <div class="container">
@@ -133,12 +164,23 @@
                   </p>
               </div>
               </div>
+
             </div>
               </li>
+              <!-- <li>
+                <a href="#!" class="text-white">Link 3</a>
+              </li>
+              <li>
+                <a href="#!" class="text-white">Link 4</a>
+              </li> -->
             </ul>
           </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
             <h5 class=" mb-2">Useful Links</h5>
+              
             <ul class="list-unstyled">           
               <li>
                 <a href="https://www.corona.gov.bd/" class="text-white" style="text-decoration: none;">Corona Info</a>
@@ -148,13 +190,22 @@
               </li>
               <li>
                 <a href="http://103.247.238.92/webportal/pages/covid19-bedstatus-display.php" class="text-white" style="text-decoration: none;" >Hospital Info </a>
-              </li>          
+              </li>
+           
             </ul>
           </div>
+          <!--Grid column-->
         </div>
+        <!--Grid row-->
       </div>
+      <!-- Grid container -->
+  
+      <!-- Copyright -->
     </footer>
+    <!-- Footer -->
   </section> 
-<script src="{% static 'js/app.js' %}"></script>  
+<script src="{% static 'js/app.js' %}"></script>
+
+    
 </body>
 </html>

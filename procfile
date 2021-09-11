@@ -1,1 +1,0 @@
-web: gunicorn vaccination_registration.wsgi --log-file -

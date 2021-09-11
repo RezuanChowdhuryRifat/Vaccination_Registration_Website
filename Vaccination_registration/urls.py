@@ -17,13 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from vaccination_app import urls as site_urls
-from django.views.static import serve
-from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(site_urls, namespace = 'site_urls')),
     path('captcha/',include("captcha.urls")),
-    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]

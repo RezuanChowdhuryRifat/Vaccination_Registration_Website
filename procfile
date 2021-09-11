@@ -1,1 +1,1 @@
-web: gunicorn vaccination_app.wsgi --log-file -
+web: gunicorn vaccination_registration.wsgi --log-file -

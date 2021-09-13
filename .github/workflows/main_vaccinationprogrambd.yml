@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'vaccinationprogrambd'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_9772215742ba43fca948a25fc1168b3c }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_f1f9b715cc9f4b628d127c751ca6bdc2 }}

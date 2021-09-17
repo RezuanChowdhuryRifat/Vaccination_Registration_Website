@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AddressView,RegistrationView,OtpView
+from .views import  RegistrationView,OtpView,VacOtpView,AddressView
 from . import views
 
 app_name = 'vaccination_app'
@@ -15,6 +15,7 @@ urlpatterns = [
     path('vaccinecard/', views.VaccinecardView, name='vaccinationcard'),
     path('otp/', OtpView.as_view(), name='otp'),
     path('showInfo/', views.show_info, name='showInfo'),
-    path('vaccineCardpdf/', views.renderpdfview, name='vaccineCardpdf')
+    path('vaccineCardpdf/', views.renderpdfview, name='vaccineCardpdf'),
+    path('votp/', VacOtpView.as_view(), name='votp')
    
 ]

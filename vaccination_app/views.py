@@ -50,9 +50,9 @@ class AddressView(ListView):
     template_name = "centeraddress.html"
     context_object_name = "centers"
     queryset = Center.objects.all().order_by('center_address')
-    
-    
-    
+
+  
+      
 def VaccinecardView(request):
 
     form_class = PostForm2
@@ -69,9 +69,19 @@ def VaccinecardView(request):
              for objects in valid:
               if objects.dob == search_term2:
                 human = True
-
+                search_term3 = Registration.objects.get(nid=search_term).mobile_no 
+                
                 request.session['NID'] = search_term
-                return redirect('/showInfo')
+                key = gen_key()
+                code = generate_code(key)
+                otp_obj = Otp.objects.create(
+                    otpkey = code
+                 ) 
+                msg_body =f'''
+                 Covid-19 vaccine registration: Your OTP code:{code}
+                 '''
+                sendsms(account_sid,auth_token,msg_body,'+19287560208','+880'+str(search_term3))
+                return redirect('/votp')
 
             else:
               form.add_error('Date_of_Birth', 'Your date of birth is incorrect')
@@ -158,7 +168,7 @@ class RegistrationView(FormView):
                  msg_body =f'''
                  Covid-19 vaccine registration: Your OTP code:{code}
                  '''
-                 sendsms(account_sid,auth_token,msg_body,'+19287560208',search_term3)
+                 sendsms(account_sid,auth_token,msg_body,'+19287560208','+880'+search_term3)
                  return super().form_valid(form)
                 else:
                  form.add_error('NID', 'You are not eligible')
@@ -182,6 +192,21 @@ class OtpView(FormView):
        else:
             form.add_error('OTP', 'Wrong OTP')
             return self.form_invalid(form)  
+
+class VacOtpView(FormView):
+    template_name = "votp.html"
+    form_class=PostForm4
+    success_url='/showInfo'
+    def form_valid(self, form):
+       search_term5 = form.cleaned_data['OTP'] 
+       search_term6 = Otp.objects.filter(otpkey=search_term5).exists()
+       print(search_term6)
+       if search_term6:    
+            human = True    
+            return super().form_valid(form)
+       else:
+            form.add_error('OTP', 'Wrong OTP')
+            return self.form_invalid(form)              
 
 def show_info(request):
     id = request.session['NID']

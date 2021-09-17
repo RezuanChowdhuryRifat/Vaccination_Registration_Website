@@ -133,6 +133,9 @@ class RegistrationView(FormView):
         search_term2=form.cleaned_data['Date_of_Birth']
         search_term3=form.cleaned_data['Phone_number']
         search_term4=form.cleaned_data['Center']
+        if search_term4 == '1':
+            form.add_error('Center', 'Please choose a center')
+            return self.form_invalid(form)
         today = date.today()
         user_age=  today.year-search_term2.year
         valid = Nid.objects.filter(id=search_term)
@@ -186,7 +189,7 @@ class OtpView(FormView):
        search_term6 = Otp.objects.filter(otpkey=search_term5).exists()
        print(search_term6)
        if search_term6:    
-            human = True   
+            
             messages.add_message(self.request, messages.SUCCESS, "You successfully registered")   
             return super().form_valid(form)
        else:
@@ -202,7 +205,7 @@ class VacOtpView(FormView):
        search_term6 = Otp.objects.filter(otpkey=search_term5).exists()
        print(search_term6)
        if search_term6:    
-            human = True    
+       
             return super().form_valid(form)
        else:
             form.add_error('OTP', 'Wrong OTP')

@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container p-5">
+<h4 style="text-align: center; color: darkslategray;" class="bg-light p-2">Admin Panel</h4>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+ 
+  <a href="/" class="btn btn-secondary">Logout</a>
+</div>
+<hr>
+  <div class="row">
+    <div class="col">
+    <div class="card border-success mb-3" style="max-width: 18rem;">
+  <div class="card-header text-success" style="text-align: center;">Total registered:</div>
+  <div class="card-body text-success">
+    <h5 class="card-title" style="text-align: center;">{{count}}</h5>
+  </div>
+</div>
+   <div class="card border-success mb-3" style="max-width: 18rem;">
+  <div class="card-header text-success" style="text-align: center;">Remainig:</div>
+  <div class="card-body text-success">
+    <h5 class="card-title" style="text-align: center;">{{count2}}</h5>
+  </div>
+</div>
+    </div>
+    <div class="col-6">
+       <div class="card border-success mb-3" style="max-width: 100%;padding: 10px;">
+  <form method="POST" action="" id="ajax-from" enctype="multipart/form-data" style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px; margin-top: 0;">
+      
+   {% csrf_token %}
+<div class="contaoner" style="padding-right: 100px; padding-top: 0px; padding-bottom: 100px; padding-left: 120px;">
+
+<div class="card-header text-success" style="text-align: center; width: 100%;">Select who can register:</div>
+   <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="1">
+  <label class="form-check-label" for="flexCheckDefault">
+    Government employee
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="2">
+  <label class="form-check-label" for="flexCheckChecked">
+   Medical personnel
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="3">
+  <label class="form-check-label" for="flexCheckChecked">
+   Volunteer
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="4">
+  <label class="form-check-label" for="flexCheckChecked">
+   Student
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="5">
+  <label class="form-check-label" for="flexCheckChecked">
+   Citizen
+  </label>
+      </div>
+    
+ <button type="submit" id="ajax-btn" class="btn btn-secondary" style="margin-top: 50px;  color: white;">Apply</button> 
+
+</div>
+</div>
+ 
+
+    </div>
+  </div>
+</div>
+
+
+ 
+     
+
+    
+{% endblock content %}

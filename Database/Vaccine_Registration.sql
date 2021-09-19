@@ -112,3 +112,6 @@ create table registration(
 create table otp(
     otpkey int 
 );
+create table categorylist(
+list varchar(50)
+);

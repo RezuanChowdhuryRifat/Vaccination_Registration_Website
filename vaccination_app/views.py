@@ -133,9 +133,13 @@ class RegistrationView(FormView):
         search_term2=form.cleaned_data['Date_of_Birth']
         search_term3=form.cleaned_data['Phone_number']
         search_term4=form.cleaned_data['Center']
-        # if search_term4 == '1':
-        #     form.add_error('Center', 'Please choose a center')
-        #     return self.form_invalid(form)
+        search_term5 = form.cleaned_data['Category']
+        if search_term4 == '1':
+            form.add_error('Center', 'Please choose a center')
+            return self.form_invalid(form)
+        if search_term5 == '1':
+            form.add_error('Category', 'Please choose a Category')
+            return self.form_invalid(form)    
             
         today = date.today()
         user_age=  today.year-search_term2.year

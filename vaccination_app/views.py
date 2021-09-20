@@ -8,7 +8,6 @@ from django.forms.forms import Form
 from typing import List
 from django.contrib import messages
 from django.contrib.auth import settings
-from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls.base import reverse
 from django.utils.translation import templatize
@@ -28,7 +27,6 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from importlib import import_module
 from django.contrib.sessions.backends.db import SessionStore
-from django.contrib.auth.decorators import login_required
 
 account_sid =os.environ['account_sid']
 auth_token =os.environ['auth_token']
@@ -266,57 +264,3 @@ def renderpdfview(request):
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-@login_required(login_url='/login')
-def AdminView(request):
-    count = Registration.objects.all().count()
-    count2 = Nid.objects.all().count() - count
-    return render(request,'admin.html',{'count':count,'count2':count2})
-
-
-def AdminpanelView(request):
-    count = Registration.objects.all().count()
-    count2 = Nid.objects.all().count() - count
-    print(count)
-    print(count2)
-    if request.method == "POST":
-      Categorylist.objects.all().delete()   
-      Government_employee= request.POST.get('1')
-      Medical_personnel = request.POST.get('2')
-      Volunteer = request.POST.get('3')
-      Student = request.POST.get('4')
-      Citizen = request.POST.get('5')
-      if Government_employee != None:
-         new_object = Categorylist.objects.create(
-             list = "Government employee"
-         )
-      if Medical_personnel != None:
-         new_object = Categorylist.objects.create(
-             list = "Medical personnel"
-         ) 
-      if Volunteer != None:
-         new_object = Categorylist.objects.create(
-             list = "Volunteer"
-         ) 
-      if Student != None:
-         new_object = Categorylist.objects.create(
-             list = "Student"
-         )
-      if Citizen != None:
-         new_object = Categorylist.objects.create(
-             list = "Citizen"
-         )   
-
-    return render(request,'adminpanel.html',{'count':count,'count2':count2})
-   
-  
-
-def LoginView(request):
-    if request.method == "POST":  
-     admin_mail= request.POST.get('email')
-     admin_pass = request.POST.get('password')
-     if admin_mail == "vaccination@gov.io" and admin_pass =="covid-19":
-         return render(request,'admin.html')
-     
-         
-    return render(request,'login.html')    

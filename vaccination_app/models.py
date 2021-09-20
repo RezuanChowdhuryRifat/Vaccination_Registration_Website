@@ -87,13 +87,6 @@ class Otp(models.Model):
         managed = False
         db_table = 'otp'
 
-class Categorylist(models.Model):
-    list = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'categorylist'
-
 
 class Registration(models.Model):
     nid = models.OneToOneField(Nid, models.DO_NOTHING, db_column='NID', primary_key=True)  # Field name made lowercase.

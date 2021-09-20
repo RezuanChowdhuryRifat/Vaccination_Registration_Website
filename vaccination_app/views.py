@@ -135,9 +135,10 @@ class RegistrationView(FormView):
         search_term2=form.cleaned_data['Date_of_Birth']
         search_term3=form.cleaned_data['Phone_number']
         search_term4=form.cleaned_data['Center']
-        if search_term4 == '1':
-            form.add_error('Center', 'Please choose a center')
-            return self.form_invalid(form)
+        # if search_term4 == '1':
+        #     form.add_error('Center', 'Please choose a center')
+        #     return self.form_invalid(form)
+            
         today = date.today()
         user_age=  today.year-search_term2.year
         valid = Nid.objects.filter(id=search_term)
@@ -150,31 +151,31 @@ class RegistrationView(FormView):
 
         else:
             if valid3:
-             form.add_error('Phone_number', 'This mobile number already registered')
-             return self.form_invalid(form)
+              form.add_error('Phone_number', 'This mobile number already registered')
+              return self.form_invalid(form)
             else:
               for objects in valid:
                 if valid4 and objects.dob == search_term2:
-                 nid_obj = Nid.objects.get(id=form.cleaned_data['NID'])
-                 center_obj = Center.objects.get(center_id=form.cleaned_data['Center'])
-                 human = True
-                 new_object = Registration.objects.create(
+                  nid_obj = Nid.objects.get(id=form.cleaned_data['NID'])
+                  center_obj = Center.objects.get(center_id=form.cleaned_data['Center'])
+                  human = True
+                  new_object = Registration.objects.create(
                   nid=nid_obj,
                   date = date.today(),
                   center=center_obj,
                   mobile_no=form.cleaned_data['Phone_number'],
                   age = user_age
                   )   
-                 key = gen_key()
-                 code = generate_code(key)
-                 otp_obj = Otp.objects.create(
+                  key = gen_key()
+                  code = generate_code(key)
+                  otp_obj = Otp.objects.create(
                     otpkey = code
                  ) 
-                 msg_body =f'''
+                  msg_body =f'''
                  Covid-19 vaccine registration: Your OTP code:{code}
                  '''
-                 sendsms(account_sid,auth_token,msg_body,'+19287560208','+880'+search_term3)
-                 return super().form_valid(form)
+                  sendsms(account_sid,auth_token,msg_body,'+19287560208','+880'+search_term3)
+                  return super().form_valid(form)
                 else:
                  form.add_error('NID', 'You are not eligible')
                  return self.form_invalid(form)

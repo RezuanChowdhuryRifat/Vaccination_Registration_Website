@@ -8,7 +8,6 @@ from django.forms.forms import Form
 from typing import List
 from django.contrib import messages
 from django.contrib.auth import settings
-from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls.base import reverse
 from django.utils.translation import templatize
@@ -28,7 +27,6 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from importlib import import_module
 from django.contrib.sessions.backends.db import SessionStore
-from django.contrib.auth.decorators import login_required
 
 account_sid =os.environ['account_sid']
 auth_token =os.environ['auth_token']
@@ -135,9 +133,14 @@ class RegistrationView(FormView):
         search_term2=form.cleaned_data['Date_of_Birth']
         search_term3=form.cleaned_data['Phone_number']
         search_term4=form.cleaned_data['Center']
+        search_term5 = form.cleaned_data['Category']
         if search_term4 == '1':
             form.add_error('Center', 'Please choose a center')
             return self.form_invalid(form)
+        if search_term5 == '1':
+            form.add_error('Category', 'Please choose a Category')
+            return self.form_invalid(form)    
+            
         today = date.today()
         user_age=  today.year-search_term2.year
         valid = Nid.objects.filter(id=search_term)
@@ -150,31 +153,31 @@ class RegistrationView(FormView):
 
         else:
             if valid3:
-             form.add_error('Phone_number', 'This mobile number already registered')
-             return self.form_invalid(form)
+              form.add_error('Phone_number', 'This mobile number already registered')
+              return self.form_invalid(form)
             else:
               for objects in valid:
                 if valid4 and objects.dob == search_term2:
-                 nid_obj = Nid.objects.get(id=form.cleaned_data['NID'])
-                 center_obj = Center.objects.get(center_id=form.cleaned_data['Center'])
-                 human = True
-                 new_object = Registration.objects.create(
+                  nid_obj = Nid.objects.get(id=form.cleaned_data['NID'])
+                  center_obj = Center.objects.get(center_id=form.cleaned_data['Center'])
+                  human = True
+                  new_object = Registration.objects.create(
                   nid=nid_obj,
                   date = date.today(),
                   center=center_obj,
                   mobile_no=form.cleaned_data['Phone_number'],
                   age = user_age
                   )   
-                 key = gen_key()
-                 code = generate_code(key)
-                 otp_obj = Otp.objects.create(
+                  key = gen_key()
+                  code = generate_code(key)
+                  otp_obj = Otp.objects.create(
                     otpkey = code
                  ) 
-                 msg_body =f'''
+                  msg_body =f'''
                  Covid-19 vaccine registration: Your OTP code:{code}
                  '''
-                 sendsms(account_sid,auth_token,msg_body,'+19287560208','+880'+search_term3)
-                 return super().form_valid(form)
+                  sendsms(account_sid,auth_token,msg_body,'+19287560208','+880'+search_term3)
+                  return super().form_valid(form)
                 else:
                  form.add_error('NID', 'You are not eligible')
                  return self.form_invalid(form)
@@ -265,57 +268,3 @@ def renderpdfview(request):
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-@login_required(login_url='/login')
-def AdminView(request):
-    count = Registration.objects.all().count()
-    count2 = Nid.objects.all().count() - count
-    return render(request,'admin.html',{'count':count,'count2':count2})
-
-
-def AdminpanelView(request):
-    count = Registration.objects.all().count()
-    count2 = Nid.objects.all().count() - count
-    print(count)
-    print(count2)
-    if request.method == "POST":
-      Categorylist.objects.all().delete()   
-      Government_employee= request.POST.get('1')
-      Medical_personnel = request.POST.get('2')
-      Volunteer = request.POST.get('3')
-      Student = request.POST.get('4')
-      Citizen = request.POST.get('5')
-      if Government_employee != None:
-         new_object = Categorylist.objects.create(
-             list = "Government employee"
-         )
-      if Medical_personnel != None:
-         new_object = Categorylist.objects.create(
-             list = "Medical personnel"
-         ) 
-      if Volunteer != None:
-         new_object = Categorylist.objects.create(
-             list = "Volunteer"
-         ) 
-      if Student != None:
-         new_object = Categorylist.objects.create(
-             list = "Student"
-         )
-      if Citizen != None:
-         new_object = Categorylist.objects.create(
-             list = "Citizen"
-         )   
-
-    return render(request,'adminpanel.html',{'count':count,'count2':count2})
-   
-  
-
-def LoginView(request):
-    if request.method == "POST":  
-     admin_mail= request.POST.get('email')
-     admin_pass = request.POST.get('password')
-     if admin_mail == "vaccination@gov.io" and admin_pass =="covid-19":
-         return render(request,'admin.html')
-     
-         
-    return render(request,'login.html')    

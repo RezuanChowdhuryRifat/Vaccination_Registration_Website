@@ -9,14 +9,13 @@ urlpatterns = [
     path('', views.HomePageView, name='HomePageView'),
     path('covidcheck/', views.CovidCheckView, name='CovidCheckView'),
     path('faq/', views.FaqView, name='FaqView'),
-    path('adminpanel/', views.AdminpanelView, name='adminpanel'),
+
     path('centeraddress/', AddressView.as_view(), name='centerAddress'),
     path('registration/', RegistrationView.as_view(), name='registration'),
     path('vaccinecard/', views.VaccinecardView, name='vaccinationcard'),
     path('otp/', OtpView.as_view(), name='otp'),
     path('showInfo/', views.show_info, name='showInfo'),
     path('vaccineCardpdf/', views.renderpdfview, name='vaccineCardpdf'),
-    path('votp/', VacOtpView.as_view(), name='votp'),
-    path('login/', views.LoginView, name='login'),
-    path('admin/', views.AdminView, name='admin')
+    path('votp/', VacOtpView.as_view(), name='votp')
+   
 ]

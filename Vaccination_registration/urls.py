@@ -19,7 +19,7 @@ from django.conf.urls import include
 from vaccination_app import urls as site_urls
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include(site_urls, namespace = 'site_urls')),
     path('captcha/',include("captcha.urls")),
 ]
